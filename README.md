@@ -18,7 +18,8 @@
 
 ## 🖼 Preview
 
-![PDFWizard Screenshot](https://via.placeholder.com/800x400?text=PDFWizard+UI+Preview)
+![PDFWizard Screenshot](pdf.png)
+![PDFWizard Screenshot](pdf2.png)
 
 ---
 
