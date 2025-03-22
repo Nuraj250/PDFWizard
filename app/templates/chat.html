@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Chat</title>
+</head>
+<body>
+    <h1>Ask Questions About Your PDF</h1>
+    <form action="/ask" method="POST">
+        <input type="hidden" name="pdf_text" value="{{ text }}">
+        <input type="text" name="question" placeholder="Ask a question..." required>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if question and answer %}
+        <h3><strong>You asked:</strong> {{ question }}</h3>
+        <p><strong>Answer:</strong> {{ answer }}</p>
+    {% endif %}
+</body>
+</html>
