@@ -1,4 +1,4 @@
-# 📄 PDFWizard
+# 📄 PDFWizard 
 
 **PDFWizard** is a smart, AI-powered PDF assistant built with Flask. Upload one or more PDFs and chat with them using natural language! Powered by OpenAI's GPT model, PDFWizard can answer your questions using the content of your documents.
 
