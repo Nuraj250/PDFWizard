@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>PDF Chat</title>
+    <meta charset="UTF-8">
+    <title>Chat with PDFWizard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Ask Questions About Your PDF</h1>
-    <form action="/ask" method="POST">
-        <input type="hidden" name="pdf_text" value="{{ text }}">
-        <input type="text" name="question" placeholder="Ask a question..." required>
-        <button type="submit">Ask</button>
-    </form>
+    <div class="container">
+        <h1>Chat with Your PDF</h1>
 
-    {% if question and answer %}
-        <h3><strong>You asked:</strong> {{ question }}</h3>
-        <p><strong>Answer:</strong> {{ answer }}</p>
-    {% endif %}
+        <form action="/chat" method="POST" class="chat-form">
+            <input type="text" name="question" placeholder="Ask a question..." required>
+            <button type="submit">Send</button>
+        </form>
+
+        <div class="export-links">
+            <a href="/export/txt">⬇️ Export as TXT</a>
+            <a href="/export/pdf">⬇️ Export as PDF</a>
+            <a href="{{ url_for('main.index') }}">🔁 Start Over</a>
+        </div>
+
+        <div class="chat-history">
+            {% for item in chat_history %}
+                <div class="message user"><strong>You:</strong> {{ item.question }}</div>
+                <div class="message bot"><strong>PDFWizard:</strong> {{ item.answer }}</div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

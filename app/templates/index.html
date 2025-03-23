@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>PDFWizard</title>
+    <meta charset="UTF-8">
+    <title>PDFWizard - Upload PDFs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Upload a PDF</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" name="pdf" accept=".pdf" required>
-        <button type="submit">Upload</button>
-    </form>
+    <div class="container">
+        <h1>📄 PDFWizard</h1>
+        <p>Select or drag and drop your PDFs to begin.</p>
+
+        <form action="/" method="POST" enctype="multipart/form-data" id="upload-form">
+            <input type="file" name="pdf" id="file-input" multiple accept=".pdf" hidden required>
+            <div class="dropzone" id="dropzone">📥 Drop PDFs here or click to upload</div>
+            <button type="submit">Process PDF</button>
+        </form>
+    </div>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+
+        dropzone.addEventListener('click', () => fileInput.click());
+
+        dropzone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropzone.classList.add('hover');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('hover');
+        });
+
+        dropzone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropzone.classList.remove('hover');
+            fileInput.files = e.dataTransfer.files;
+        });
+    </script>
 </body>
 </html>
